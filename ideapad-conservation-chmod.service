@@ -1,0 +1,9 @@
+[Unit]
+Description=Ideapad conservation chmod public write
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/chmod "646" "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
+
+[Install]
+WantedBy=multi-user.target

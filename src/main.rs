@@ -10,17 +10,13 @@ fn show_error(message: &str) {
 }
 
 fn main() {
-    if !nix::unistd::Uid::effective().is_root() {
-        show_error("must be run as root");
-        std::process::exit(1);
-    }
-
     let path = "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode";
+
     let content = match std::fs::read_to_string(&path) {
         Ok(content) => content.trim_end().to_owned(),
         Err(_) => {
             show_error("Could not read file");
-            std::process::exit(2);
+            std::process::exit(1);
         }
     };
     let new_content ;
@@ -31,12 +27,12 @@ fn main() {
         new_content = "0";
     } else {
         show_error(format!("invalid file content: {content}").as_str());
-        std::process::exit(3);
+        std::process::exit(2);
     }
 
     if let Err(_) = std::fs::write(&path, new_content) {
         show_error("Could not write to file");
-        std::process::exit(4);
+        std::process::exit(3);
     }
     
     println!("Conservation mode: {new_content}");
