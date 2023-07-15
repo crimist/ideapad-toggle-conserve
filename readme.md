@@ -1,8 +1,12 @@
 # ideapad-toggle-conserve
 
-A tiny tool to toggle battery conservation mode on Lenovo laptops. Designed to be bound to a key press for convenance.
+A tiny tool to toggle battery conservation mode on Lenovo laptops. Designed to be bound to a key press.
 
-The ideapad driver requires root to write to the conservation mode by default. You'll want to allow your user to write to the file by either:
+![sc_enabled.png](sc_enabled.png) ![sc_disabled.png](sc_disabled.png)
+
+---
+
+The ideapad driver sets conservation mode file to `root:root` ownership on boot. You'll want to allow your user to write to the file by either:
 
 ```sh
 IDEAPAD_FILE=/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
