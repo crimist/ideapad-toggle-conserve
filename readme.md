@@ -16,7 +16,7 @@ chown $(whoami):$(whoami) $IDEAPAD_FILE
 chmod 646 $IDEAPAD_FILE
 ```
 
-I've made a convenient systemd script to allow public write on boot up.
+I've made a simple systemd service to set the file permissions to `646` on boot up.
 
 ```sh
 systemctl enable $(realpath ideapad-conservation-chmod.service)
